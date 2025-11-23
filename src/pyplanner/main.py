@@ -3,7 +3,7 @@ import csv
 import os
 from typing import Any
 
-class Plano:
+class Planner:
     """
     Classe responsável por gerenciar um plano de tarefas.
     Cada tarefa possui nome, data e estado.
@@ -44,11 +44,11 @@ class Plano:
             nome, data = tarefa
             self._tarefas.append({
                 "nome": nome,
-                "data": Plano._formata_data(data),
+                "data": Planner._formata_data(data),
                 "estado": estado,
             })
         elif isinstance(tarefa, str):
-            data = Plano._formata_data(args[0]) if args else None
+            data = Planner._formata_data(args[0]) if args else None
             self._tarefas.append({
                 "nome": tarefa,
                 "data": data,
@@ -58,7 +58,7 @@ class Plano:
             for nome, data in tarefa:
                 self._tarefas.append({
                     "nome": nome,
-                    "data": Plano._formata_data(data),
+                    "data": Planner._formata_data(data),
                     "estado": estado,
                 })
         else:
@@ -126,7 +126,7 @@ class Plano:
 
         if campo_alvo in ["nome", "data", "estado"]:
             if campo_alvo == "data":
-                self._tarefas[indice]["data"] = Plano._formata_data(novo_valor)
+                self._tarefas[indice]["data"] = Planner._formata_data(novo_valor)
             else:
                 self._tarefas[indice][campo_alvo] = novo_valor    
         else:
@@ -161,13 +161,13 @@ class CSVFile:
         return os.path.join(path, file_name)
 
     @staticmethod
-    def create(file_name: str, plano: Plano, path=None) -> None:
+    def create(file_name: str, plano: Planner, path=None) -> None:
         """
         Cria um arquivo CSV com todas as tarefas do plano.
 
         Args:
             file_name (str): Nome do arquivo.
-            plano (Plano): Instância da classe Plano.
+            plano (Planner): Instância da classe Planner.
             path (str, optional): Caminho onde salvar. Default: Desktop.
         """
         if not plano:

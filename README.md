@@ -10,15 +10,17 @@ Um pequeno projeto Python que implementa um **gerenciador de tarefas** capaz de:
 
 O projeto foi dividido em duas classes principais:
 
-- **Plano** → controla as tarefas em memória  
-- **CSVFile** → controla operações em CSV (create, insert, update, remove)
+- **Planner** → gerencia as tarefas em memória  
+- **CSVFile** → controla operações em CSV 
 
-## Como instalar
-<pre> ```pip install -i https://test.pypi.org/simple/ pyplanner``` </pre> 
+Para instalar a biblioteca:
+```bash
+pip install -i https://test.pypi.org/simple/ pyplanner
+```
 
 ## Como funciona
 
-### 🔹 Classe `Plano`
+### 🔹 Classe `Planner`
 
 Armazena tarefas em memória. Cada tarefa possui:
 
@@ -52,9 +54,9 @@ Todos usam o **Desktop como caminho padrão**, mas você pode passar qualquer di
 ## 1. Criar um plano e adicionar tarefas
 
 ```python
-from pyplanner import Plano, CSVFile
+from pyplanner import Planner, CSVFile
 
-plano = Plano()
+plano = Planner()
 
 plano.add("Estudar Python", "01/12/2025")
 
@@ -71,7 +73,7 @@ plano.add(tarefas_list)
 CSVFile.create("tarefas.csv", plano)
 ```
 
-## 3. Inserir, atualizar e remover tarefa do CSV
+## 3. Inserir, atualizar e remover tarefas do CSV
 
 ```python
 CSVFile.insert("tarefas.csv", "Comprar presente", "15/12/2025")
