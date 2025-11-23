@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyplanner"
+version = "1.0.1"
+description = "Uma biblioteca para gerenciamento de tarefas e CSV."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Luciano de Oliveira Mayer", email = "luciano_mayer@hotmail.com" },
+    { name = "Steve Pagno", email = "stevepagno4@gmail.com"}
+]
+
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/lucianoomayer/PyPlanner"
+"Source"   = "https://github.com/lucianoomayer/PyPlanner"

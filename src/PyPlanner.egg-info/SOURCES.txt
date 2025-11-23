@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+src/PyPlanner.egg-info/PKG-INFO
+src/PyPlanner.egg-info/SOURCES.txt
+src/PyPlanner.egg-info/dependency_links.txt
+src/PyPlanner.egg-info/top_level.txt
+src/pyplanner/__init__.py
+src/pyplanner/main.py
+src/pyplanner.egg-info/PKG-INFO
+src/pyplanner.egg-info/SOURCES.txt
+src/pyplanner.egg-info/dependency_links.txt
+src/pyplanner.egg-info/top_level.txt
