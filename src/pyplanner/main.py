@@ -14,7 +14,7 @@ class Planner:
         self._tarefas = []
 
     @staticmethod
-    def _formata_data(data: str | None) -> datetime.date | None:
+    def _formata_data(data: str) -> datetime.date:
         """
         Converte uma string no formato 'dd/mm/yyyy' para um objeto datetime.date.
 
@@ -24,8 +24,8 @@ class Planner:
         Returns:
             datetime.date | None: Objeto de data convertido ou None se vazio.
         """
-        if not data:
-            return None
+        if not isinstance(data, str):
+            raise TypeError("Aviso: Data deve ser uma string no formato dd/mm/yyyy.")
         try:
             return datetime.datetime.strptime(data, "%d/%m/%Y").date()
         except ValueError:
@@ -36,34 +36,47 @@ class Planner:
         Adiciona uma ou mais tarefas ao plano.
 
         Args:
-            tarefa (Any): Pode ser uma tupla (nome, data), uma string (nome) ou uma lista de tuplas.
-            *args: Argumentos adicionais (usado para passar data quando tarefa é string).
+            tarefa (Any): Pode ser:
+                - tupla (nome, data)
+                - string (nome, data) 
+                - lista de tuplas [(nome, data), (nome, data),...]
+                * O campo data é opcional.
+            *args: data opcional se tarefa for string.
         """
         estado = "Incompleto"
-        if isinstance(tarefa, tuple):
-            nome, data = tarefa
-            self._tarefas.append({
-                "nome": nome,
-                "data": Planner._formata_data(data),
-                "estado": estado,
-            })
-        elif isinstance(tarefa, str):
-            data = Planner._formata_data(args[0]) if args else None
-            self._tarefas.append({
-                "nome": tarefa,
-                "data": data,
-                "estado": estado,
-            })
-        elif isinstance(tarefa, list):
-            for nome, data in tarefa:
+
+        try:
+            if isinstance(tarefa, tuple):
+                nome = tarefa[0]
+                data = tarefa[1] if len(tarefa) > 1 else None
                 self._tarefas.append({
                     "nome": nome,
-                    "data": Planner._formata_data(data),
+                    "data": Planner._formata_data(data) if data else None,
                     "estado": estado,
                 })
-        else:
-            raise TypeError("Tipo de tarefa inválido. Insira na forma de string, tupla ou lista.")
-        print("Tarefa(s) adicionada(s) com sucesso!")
+            elif isinstance(tarefa, str):
+                data = args[0] if args else None
+                self._tarefas.append({
+                    "nome": tarefa,
+                    "data": Planner._formata_data(data) if data else None,
+                    "estado": estado,
+                })
+            elif isinstance(tarefa, list):
+                for item in tarefa:
+                    if not isinstance(item, tuple) or len(item) == 0:
+                        raise TypeError("Lista deve conter tuplas com pelo menos o nome da tarefa")
+                    nome = item[0]
+                    data = item[1] if len(item) > 1 else None
+                    self._tarefas.append({
+                        "nome": nome,
+                        "data": Planner._formata_data(data) if data else None,
+                        "estado": estado,
+                    })
+            else:
+                raise TypeError("Tipo de tarefa inválido. Use string, tupla ou lista de tuplas.")
+            print("Tarefa(s) adicionada(s) com sucesso!")
+        except Exception as e:
+            print(f"Erro ao adicionar a tarefa: {e}")
 
     def get(self) -> list[dict[str, Any]]:
         """

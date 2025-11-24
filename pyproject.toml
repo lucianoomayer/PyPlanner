@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyplanner"
-version = "1.0.2"
+version = "1.0.3"
 description = "Uma biblioteca para gerenciamento de tarefas e CSV."
 readme = "README.md"
 requires-python = ">=3.9"

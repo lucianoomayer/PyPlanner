@@ -63,7 +63,7 @@ plano.add("Estudar Python", "01/12/2025")
 tarefas_tupla = ("Ir à academia", "03/12/2025")
 plano.add(tarefas_tupla)
 
-tarefas_list = [[("Pagar contas", "10/12/2025"), ("Mercado", "05/12/2025")]]
+tarefas_list = [("Pagar contas", "10/12/2025"), ("Mercado", "05/12/2025")]
 plano.add(tarefas_list)
 ```
 
